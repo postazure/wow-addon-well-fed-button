@@ -1,0 +1,6 @@
+<Bindings>
+    <Binding name="CLICK WellFedButtonMain:LeftButton" header="WELLFEDBUTTON" category="ADDONS"/>
+    <Binding name="WELLFEDBUTTON_TOGGLE" category="ADDONS">
+        WellFedButton_ToggleExpanded()
+    </Binding>
+</Bindings>

@@ -1,0 +1,41 @@
+"""Syntax-checks the addon under Lua 5.1 (WoW's dialect), checks widget methods
+against Forever's API docs, and tests the release helpers.
+
+Needs: pip install lupa
+Usage: python tests/run.py   (from the project root)
+"""
+import glob
+import os
+import subprocess
+import sys
+
+import lupa.lua51 as lua51
+
+root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.chdir(root)
+
+ok = True
+
+# Syntax check every addon file (compile only, nothing runs).
+for path in sorted(glob.glob('WellFedButton/*.lua')):
+    rt = lua51.LuaRuntime(unpack_returned_tuples=True)
+    src = open(path, encoding='utf-8').read()
+    compiled, err = rt.eval(
+        'function(src, name) local f, e = loadstring(src, name) return f ~= nil, tostring(e) end'
+    )(src, '@' + path)
+    if not compiled:
+        ok = False
+        print('SYNTAX ' + str(err))
+    else:
+        print('syntax ok  ' + path)
+
+# Every :Method( call must exist in Forever's widget API docs (or be a known exception).
+print('--- tests/check_methods.py')
+if subprocess.call([sys.executable, os.path.join('tests', 'check_methods.py')]) != 0:
+    ok = False
+
+print('--- tests/test_release.py')
+if subprocess.call([sys.executable, os.path.join('tests', 'test_release.py')]) != 0:
+    ok = False
+
+sys.exit(0 if ok else 1)

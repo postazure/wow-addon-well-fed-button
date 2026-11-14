@@ -1,0 +1,10 @@
+## Interface: 16001
+## AllowLoadGameType: camelot
+## Title: Well Fed Button
+## Notes: One button for all your Well Fed food. Left-click to eat, Right-click to expand, Shift-drag to move.
+## Version: 1.0.3
+## Category: Action Bars
+## IconTexture: Interface\AddOns\WellFedButton\icon
+## SavedVariables: WellFedButtonDB
+
+WellFedButton.lua
