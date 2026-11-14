@@ -4,6 +4,16 @@ A WoW Forever addon that puts all the Well Fed food in your bags into one button
 
 ![icon](icon.png)
 
+## Screenshots
+
+![The button](screenshots/1-button.png)
+
+![The expanded food bar](screenshots/2-expanded.png)
+
+![The tooltip with click hints](screenshots/3-tooltip.png)
+
+![The settings menu](screenshots/4-settings.png)
+
 ## Features
 
 - One button for every Well Fed food in your bags, with a count.
